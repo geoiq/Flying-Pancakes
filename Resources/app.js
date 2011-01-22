@@ -1,82 +1,23 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
+Ti.include('js/titanium_oauth.js');
+
+Ti.include("version.js");
+
+if (isIPhone3_2_Plus())
+{
+	//NOTE: starting in 3.2+, you'll need to set the applications
+	//purpose property for using Location services on iPhone
+	Ti.Geolocation.purpose = "Food Cart tracking";
+}
 
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
-
-//
-// create base UI tab and root window
-//
-var win1 = Titanium.UI.createWindow({
-	title: 'Fling',
-	url: "Fling.js",
-	backgroundColor: '#fff'
-});
-var tab1 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_views.png',
-	title: 'Fling',
-	window: win1
-});
-
-var label1 = Titanium.UI.createLabel({
-	color: '#999',
-	text: 'I am Window 1 - Fling',
-	font: {fontSize: 20, fontFamily: 'Helvetica Neue'},
-	textAlign: 'center',
-	width: 'auto'
-});
-
-win1.add(label1);
-
-
-//
-// create controls tab and root window
-//
-var win2 = Titanium.UI.createWindow({
-	title: 'See',
-	backgroundColor: '#fff'
-});
-var tab2 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_ui.png',
-	title: 'See',
-	window: win2
-});
-
-var label2 = Titanium.UI.createLabel({
-	color: '#999',
-	text: 'I am Window 2 - See',
-	font: {fontSize: 20, fontFamily: 'Helvetica Neue'},
-	textAlign: 'center',
-	width: 'auto'
-});
-
-win2.add(label2);
-
-
-//
-// create controls tab and root window
-//
-var win3 = Titanium.UI.createWindow({
-	title: 'Preference',
-	url: "Preference.js",
-	backgroundColor: '#fff'
-});
-var tab3 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_ui.png',
-	title: 'Preference',
-	window: win3
-});
-
-
-
-//
-//  add tabs
-//
-tabGroup.addTab(tab1);
-tabGroup.addTab(tab2);
-tabGroup.addTab(tab3);
-
+Ti.include("twitter.js");
+Ti.include("location.js");
+Ti.include("fling.js")
+Ti.include("flip.js")
 
 // open tab group
 tabGroup.open();
