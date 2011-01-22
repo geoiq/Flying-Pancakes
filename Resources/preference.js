@@ -69,13 +69,6 @@ win.add(gc_mapid);
 win.add(authenticate);
 
 
-function trace(theMessage)
-{
-	var msg = Titanium.UI.createAlertDialog({message: theMessage});
-	msg.show();
-}
-
-
 authenticate.addEventListener('click', function()
 {
 	trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
