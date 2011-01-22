@@ -12,6 +12,8 @@ var tab1 = Titanium.UI.createTab({
     window:win1
 });
 
+tabGroup.addTab(tab1);
+
 var label1 = Titanium.UI.createLabel({
 	top:10,
 	left:10,
@@ -76,24 +78,3 @@ tweet_button.addEventListener('click',function() {
     }
     
 });
-
-
-//
-// create controls tab and root window
-//
-var win3 = Titanium.UI.createWindow({
-	title: 'Preference',
-	url: "Preference.js",
-	backgroundColor: '#fff'
-});
-var tab3 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_ui.png',
-	title: 'Preference',
-	window: win3
-});
-
-//
-//  add tabs
-//
-tabGroup.addTab(tab1);
-tabGroup.addTab(tab3);

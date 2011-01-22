@@ -18,6 +18,7 @@ Ti.include("twitter.js");
 Ti.include("location.js");
 Ti.include("fling.js")
 Ti.include("flip.js")
+Ti.include("preference.js")
 
 // open tab group
 tabGroup.open();
