@@ -1,15 +1,6 @@
-//
-// create controls tab and root window
-//
-var win2 = Titanium.UI.createWindow({  
-    title:'Flip',
-    backgroundColor:'#fff'
-});
-var tab2 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Flip',
-    window:win2
-});
+Ti.include("utils.js");
+
+var win = Titanium.UI.currentWindow;
 
 var label2 = Titanium.UI.createLabel({
 	color:'#999',
@@ -19,10 +10,4 @@ var label2 = Titanium.UI.createLabel({
 	width:'auto'
 });
 
-win2.add(label2);
-
-
-//
-//  add tabs
-//
-tabGroup.addTab(tab2);  
+win.add(label2);

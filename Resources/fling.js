@@ -1,63 +1,62 @@
-//
-// create base UI tab and root window
-//
-var win1 = Titanium.UI.createWindow({  
-    title:'Fling',
-    backgroundColor:'#fff'
-});
-var tab1 = Titanium.UI.createTab({  
-    icon:'images/KS_nav_views.png',
-    title:'Fling',
-    window:win1
-});
+Ti.include('js/titanium_oauth.js');
+Ti.include("twitter.js");
+Ti.include("location.js");
+Ti.include("utils.js");
 
-tabGroup.addTab(tab1);
+var win = Titanium.UI.currentWindow;
 
+var lbl1 = Titanium.UI.createLabel({
+	text: "Where you're going and what you're shilling?",
+	width: 220,
+	height: 50,
+	top: 5,
+	color: '#336699',
+	textAlign: 'center'
+});
+win.add(lbl1);
 
 var tweet_text = Titanium.UI.createTextArea({
-	value: "where you're going and what you're shilling.",
 	height: 85,
 	width: 300,
-	top: 10,
+	top: 65,
 	font: {fontSize: 16, fontFamily: 'Helvetica Neue', fontWeight: 'bold'},
 	color: '#336699',
 	textAlign: 'left',
-	appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,	
-	keyboardType: Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
-	returnKeyType: Titanium.UI.RETURNKEY_EMERGENCY_CALL,
+	appearance: Titanium.UI.KEYBOARD_APPEARANCE_ALERT,
+	keyboardType: Titanium.UI.KEYBOARD_ASCII,
 	borderWidth: 2,
 	borderColor: '#bbb',
 	borderRadius: 5,
 	suppressReturn: false
 	
 });
-win1.add(tweet_text);
+win.add(tweet_text);
 
 var tweet_location_label = Titanium.UI.createLabel({
-	top: -130,
+	top: -20,
 	left: 15,
 	color: '#666',
 	text: "Include Current Location?",
 	font: {fontSize: 16, fontFamily: 'Helvetica Neue'}
 });
-win1.add(tweet_location_label);
+win.add(tweet_location_label);
 
 var tweet_location_checkbox = Titanium.UI.createSwitch({
 	title: "Include Current Location: " + false,
 	value: false,
-	top: 105,
+	top: 160,
 	left: 215
 });
-win1.add(tweet_location_checkbox);
+win.add(tweet_location_checkbox);
 
 var tweet_button = Titanium.UI.createButton({
 	title: "Fling",
 	id: "b", 
 	height: 40,
 	width: 200,
-	top: 145
+	top: 200
 });
-win1.add(tweet_button);
+win.add(tweet_button);
 
 tweet_button.addEventListener('click', function() {
 	tweet_text.blur();

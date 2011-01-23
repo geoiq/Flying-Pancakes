@@ -1,20 +1,6 @@
-//
-// create controls tab and root window
-//
-var win = Titanium.UI.createWindow({
-	title: 'Preference',
-//	url: "Preference.js",
-	backgroundColor: '#fff'
-});
-var tab3 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_ui.png',
-	title: 'Preference',
-	window: win
-});
+Ti.include("utils.js");
 
-tabGroup.addTab(tab3);
-
-//var win = Titanium.UI.currentWindow;
+var win = Titanium.UI.currentWindow;
 
 var lbl1 = Titanium.UI.createLabel({
 	text: 'GeoCommons Login Information',
@@ -30,7 +16,7 @@ var gc_username = Titanium.UI.createTextField({
 	height: 35,
 	top: 45,
 	width: 250,
-	value: "Username",
+	hintText: "Username",
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
@@ -39,7 +25,7 @@ var gc_password = Titanium.UI.createTextField({
 	height: 35,
 	top: 85,
 	width: 250,
-	value: "Password",
+	hintText: "Password",
 	passwordMask: true,
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
@@ -49,7 +35,7 @@ var gc_mapid = Titanium.UI.createTextField({
 	height: 35,
 	top: 135,
 	width: 250,
-	value: "Map ID",
+	hintText: "Map ID",
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
@@ -71,5 +57,9 @@ win.add(authenticate);
 
 authenticate.addEventListener('click', function()
 {
+	gc_username.blur();
+	gc_password.blur();
+	gc_mapid.blur();
+	
 	trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
 });

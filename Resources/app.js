@@ -1,8 +1,7 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
-Ti.include('js/titanium_oauth.js');
-
 Ti.include("version.js");
+Ti.include("utils.js");
 
 if (isIPhone3_2_Plus())
 {
@@ -11,15 +10,49 @@ if (isIPhone3_2_Plus())
 	Ti.Geolocation.purpose = "Food Cart tracking";
 }
 
+/////
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
-Ti.include("twitter.js");
-Ti.include("location.js");
-Ti.include("utils.js");
-Ti.include("fling.js");
-Ti.include("flip.js");
-Ti.include("preference.js");
+var win1 = Titanium.UI.createWindow({
+    title: 'Fling',
+	url: "fling.js",
+    backgroundColor: '#fff'
+});
+var tab1 = Titanium.UI.createTab({
+    icon: 'images/KS_nav_views.png',
+    title: 'Fling',
+    window: win1
+});
+tabGroup.addTab(tab1);
+
+/////
+
+var win2 = Titanium.UI.createWindow({
+    title: 'Flip',
+	url: "flip.js",
+    backgroundColor: '#fff'
+});
+var tab2 = Titanium.UI.createTab({
+    icon: 'images/KS_nav_ui.png',
+    title: 'Flip',
+    window: win2
+});
+tabGroup.addTab(tab2);  
+
+/////
+
+var win3 = Titanium.UI.createWindow({
+	title: 'Preference',
+	url: "preference.js",
+	backgroundColor: '#fff'
+});
+var tab3 = Titanium.UI.createTab({
+	icon: 'images/KS_nav_ui.png',
+	title: 'Preference',
+	window: win3
+});
+tabGroup.addTab(tab3);
 
 // open tab group
 tabGroup.open();
