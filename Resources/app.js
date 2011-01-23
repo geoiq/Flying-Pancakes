@@ -13,6 +13,7 @@ if (isIPhone3_2_Plus())
 /////
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
+var LOCATION = {};
 
 var win1 = Titanium.UI.createWindow({
     title: 'Fling',

@@ -1,7 +1,6 @@
-var tweet_location = function(params) {
+var get_location = function(callback) {
 	Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_BEST;
 	Titanium.Geolocation.distanceFilter = 10;
-	var location = {};
     Titanium.Geolocation.getCurrentPosition(function(e){
         if (!e.success || e.error)
         {
@@ -20,10 +19,8 @@ var tweet_location = function(params) {
         // var altitudeAccuracy = e.coords.altitudeAccuracy;
         Ti.API.info('Location: ' + e.coords.longitude + ", " + e.coords.latitude);
         
-        location = e.coords;
-        params.push(['lat', location.latitude])
-        params.push(['long', location.longitude])
-        params.push(['display_coordinates', "true"])
-        send_tweet(params);
+        LOCATION = e.coords;
+        if(callback)
+            callback.call(LOCATION);
     });	    
 }

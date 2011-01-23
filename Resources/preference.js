@@ -39,14 +39,12 @@ var gc_mapid = Titanium.UI.createTextField({
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
-
 var authenticate = Titanium.UI.createButton({
 	title: 'Authenticate',
 	height: 40,
 	width: 200,
 	top: 185
 });
-
 
 win.add(lbl1);
 win.add(gc_username);
@@ -61,5 +59,12 @@ authenticate.addEventListener('click', function()
 	gc_password.blur();
 	gc_mapid.blur();
 	
-	trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
+	// trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
+	Ti.API.info("gc_mapid: " + gc_mapid.value)
+	var mapView = Ti.UI.createWebView({
+		url: "http://geocommons.com/maps/" + gc_mapid.value + "/view/javascript",
+		height: '500px',
+		top: 0
+	});
+	win.add(mapView);
 });

@@ -28,7 +28,6 @@ var tweet_text = Titanium.UI.createTextArea({
 	borderColor: '#bbb',
 	borderRadius: 5,
 	suppressReturn: false
-	
 });
 win.add(tweet_text);
 
@@ -58,19 +57,25 @@ var tweet_button = Titanium.UI.createButton({
 });
 win.add(tweet_button);
 
+get_location();
+
 tweet_button.addEventListener('click', function() {
 	tweet_text.blur();
 	var params = [['status', tweet_text.value], ['include_entities', 'true']];
+	
 	if (tweet_location_checkbox.value) {
+        params.push(['lat', location.latitude])
+        params.push(['long', location.longitude])
+        params.push(['display_coordinates', "true"])
+
 		tweet_location(params);
-	} else {
-		send_tweet(params, function() {
-		Titanium.UI.createAlertDialog({
-			title: 'Flung!',
-			message: "You're on your way!"
-			}).show();
-		});
 	}
+	send_tweet(params, function() {
+	Titanium.UI.createAlertDialog({
+		title: 'Flung!',
+		message: "You're on your way!"
+		}).show();
+	});
 });
 
 tweet_location_checkbox.addEventListener("change", function(e)
