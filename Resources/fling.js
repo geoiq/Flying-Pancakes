@@ -2,7 +2,7 @@
 // create base UI tab and root window
 //
 var win1 = Titanium.UI.createWindow({  
-    title:'Fling',
+    title:'Flying Pancakes: Fling!',
     backgroundColor:'#fff'
 });
 var tab1 = Titanium.UI.createTab({  
@@ -13,9 +13,8 @@ var tab1 = Titanium.UI.createTab({
 
 tabGroup.addTab(tab1);
 
-
 var tweet_text = Titanium.UI.createTextArea({
-	value: "where you're going and what you're shilling.",
+	hintText: "where you're going and what you're shilling.",
 	height: 85,
 	width: 300,
 	top: 10,
@@ -29,7 +28,6 @@ var tweet_text = Titanium.UI.createTextArea({
 	borderColor: '#bbb',
 	borderRadius: 5,
 	suppressReturn: false
-	
 });
 win1.add(tweet_text);
 
@@ -59,19 +57,25 @@ var tweet_button = Titanium.UI.createButton({
 });
 win1.add(tweet_button);
 
+get_location();
+
 tweet_button.addEventListener('click', function() {
 	tweet_text.blur();
 	var params = [['status', tweet_text.value], ['include_entities', 'true']];
+	
 	if (tweet_location_checkbox.value) {
+        params.push(['lat', location.latitude])
+        params.push(['long', location.longitude])
+        params.push(['display_coordinates', "true"])
+
 		tweet_location(params);
-	} else {
-		send_tweet(params, function() {
-		Titanium.UI.createAlertDialog({
-			title: 'Flung!',
-			message: "You're on your way!"
-			}).show();
-		});
 	}
+	send_tweet(params, function() {
+	Titanium.UI.createAlertDialog({
+		title: 'Flung!',
+		message: "You're on your way!"
+		}).show();
+	});
 });
 
 tweet_location_checkbox.addEventListener("change", function(e)
