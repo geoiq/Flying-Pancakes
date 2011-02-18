@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // create controls tab and root window
 //
@@ -68,6 +69,63 @@ connectButton.addEventListener('click', function() {
     // }
 });
 
+=======
+// var mapview = Titanium.Map.createView({
+//     mapType: Titanium.Map.STANDARD_TYPE,
+//     region:{latitude:LOCATION.latitude, longitude:LOCATION.longitude, latitudeDelta:15, longitudeDelta:15},
+//     animate:true,
+//     regionFit:true,
+//     userLocation:true
+// });
+// 
+// win2.add(mapview);
+// 
+// var connectButton = Titanium.UI.createButton({
+//     title:'Connect',
+//     width:75,
+//     style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+// });
+// var closeButton = Titanium.UI.createButton({
+//     title:'Close',
+//     width:75,
+//     style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+// });
+// var clearButton = Titanium.UI.createButton({
+//     title:'Clear',
+//     width:75,
+//     style:Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+// });
+// 
+// var flexSpace = Titanium.UI.createButton({
+//     systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+// });
+// var fixedSpace = Titanium.UI.createButton({
+//     systemButton:Titanium.UI.iPhone.SystemButton.FIXED_SPACE,
+//     width:50
+// });
+// win2.setToolbar([flexSpace,connectButton,flexSpace,closeButton,flexSpace,clearButton,flexSpace]);
+// 
+// 
+// /////////////////////////
+// // Button event listeners
+// /////////////////////////
+// mapview.addEventListener('click', function(e) {
+//     if (e.annotation) {
+//         e.annotation.leftView.image = "http://img.tweetimag.es/i/" + e.title + '_n.png';
+//     }
+// });
+// 
+// connectButton.addEventListener('click', function() {
+//     getLocationTweets(38.85,-77.26,10)
+//     // try {
+//     //     socket.connect();
+//     //     Titanium.API.info('Opened!');
+//     // } catch (e) {
+//     //     Titanium.API.info('Exception: '+e);
+//     // }
+// });
+// 
+>>>>>>> 6762ba87b7205ffc467543a80867b943c8a03735
 // closeButton.addEventListener('click', function() {
 //     try {
 //         socket.close();
@@ -111,9 +169,3 @@ searchButton.addEventListener('click', function() {
 //         socket.close();
 //     }
 // });
-
-
-//
-//  add tabs
-//
-tabGroup.addTab(tab2);  

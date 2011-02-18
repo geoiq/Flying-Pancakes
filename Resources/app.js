@@ -1,8 +1,7 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
-Ti.include('js/titanium_oauth.js');
-
 Ti.include("version.js");
+Ti.include("utils.js");
 
 if (isIPhone3_2_Plus())
 {
@@ -11,6 +10,7 @@ if (isIPhone3_2_Plus())
 	Ti.Geolocation.purpose = "Food Cart tracking";
 }
 
+/////
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 var LOCATION = {};

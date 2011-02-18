@@ -1,20 +1,6 @@
-//
-// create controls tab and root window
-//
-var win = Titanium.UI.createWindow({
-	title: 'Preference',
-//	url: "Preference.js",
-	backgroundColor: '#fff'
-});
-var tab3 = Titanium.UI.createTab({
-	icon: 'images/KS_nav_ui.png',
-	title: 'Preference',
-	window: win
-});
+Ti.include("utils.js");
 
-tabGroup.addTab(tab3);
-
-//var win = Titanium.UI.currentWindow;
+var win = Titanium.UI.currentWindow;
 
 var lbl1 = Titanium.UI.createLabel({
 	text: 'GeoCommons Login Information',
@@ -53,14 +39,12 @@ var gc_mapid = Titanium.UI.createTextField({
 	borderStyle: Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 });
 
-
 var authenticate = Titanium.UI.createButton({
 	title: 'Authenticate',
 	height: 40,
 	width: 200,
 	top: 185
 });
-
 
 win.add(lbl1);
 win.add(gc_username);
@@ -71,6 +55,7 @@ win.add(authenticate);
 
 authenticate.addEventListener('click', function()
 {
+<<<<<<< HEAD
     // trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
     Ti.API.info("gc_mapid: " + gc_mapid.value)
     // var mapView = Ti.UI.createWebView({
@@ -78,4 +63,18 @@ authenticate.addEventListener('click', function()
     //  height:'500px'
     // });
     // win2.add(mapView);    
+=======
+	gc_username.blur();
+	gc_password.blur();
+	gc_mapid.blur();
+	
+	// trace("GC Username : " + gc_username.value + "\n" + "GC Password : " + gc_password.value + "\n" + "Map ID : " + gc_mapid.value);
+	Ti.API.info("gc_mapid: " + gc_mapid.value)
+	var mapView = Ti.UI.createWebView({
+		url: "http://geocommons.com/maps/" + gc_mapid.value + "/view/javascript",
+		height: '500px',
+		top: 0
+	});
+	win.add(mapView);
+>>>>>>> 6762ba87b7205ffc467543a80867b943c8a03735
 });
