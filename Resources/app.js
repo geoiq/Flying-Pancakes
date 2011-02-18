@@ -17,6 +17,7 @@ var LOCATION = {};
 
 Ti.include("twitter.js");
 Ti.include("location.js");
+Ti.include("geoiq.js");
 Ti.include("utils.js");
 Ti.include("fling.js");
 Ti.include("flip.js");

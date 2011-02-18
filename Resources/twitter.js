@@ -1,6 +1,4 @@
 var send_tweet = function(params, confirmation_function) {
-
-    
     var oauth = new TitaniumOAuth('MZqQKKYS9jJsaHDgwX97w','68na5a03K0pUTcyjFHp0PKAbg3TkJtOCaVauSyKmZA');
     
     // var params = [['status', tweet]];
@@ -21,79 +19,80 @@ var send_tweet = function(params, confirmation_function) {
     
 }
 
-function tableTweet(tweet) {
-				var tweet = tweets[c].text;
-				var user = tweets[c].user.screen_name;
-				var avatar = tweets[c].user.profile_image_url;
-				var created_at = prettyDate(strtotime(tweets[c].created_at));
-				var bgcolor = (c % 2) == 0 ? '#fff' : '#eee';
+function tableTweet(tweet, c) {
+    Ti.API.info(tweet)
+    var text = tweet.text;
+    var user = tweet.from_user;
+    var avatar = tweet.profile_image_url;
+    var created_at = prettyDate(strtotime(tweet.created_at));
+    var bgcolor = (c % 2) == 0 ? '#fff' : '#eee';
 
-				var row = Ti.UI.createTableViewRow({hasChild:true,height:'auto',backgroundColor:bgcolor});
+    var row = Ti.UI.createTableViewRow({hasChild:true,height:'auto',backgroundColor:bgcolor});
 
-				// Create a vertical layout view to hold all the info labels and images for each tweet
-				var post_view = Ti.UI.createView({
-					height:'auto',
-					layout:'vertical',
-					left:5,
-					top:5,
-					bottom:5,
-					right:5
-				});
+    // Create a vertical layout view to hold all the info labels and images for each tweet
+    var post_view = Ti.UI.createView({
+        height:'auto',
+        layout:'vertical',
+        left:5,
+        top:5,
+        bottom:5,
+        right:5
+    });
 
-				var av = Ti.UI.createImageView({
-						image:avatar,
-						left:0,
-						top:0,
-						height:48,
-						width:48
-					});
-				// Add the avatar image to the view
-				post_view.add(av);
+    var av = Ti.UI.createImageView({
+        image:avatar,
+        left:0,
+        top:0,
+        height:48,
+        width:48
+    });
+    // Add the avatar image to the view
+    post_view.add(av);
 
-				var user_label = Ti.UI.createLabel({
-					text:user,
-					left:54,
-					width:120,
-					top:-48,
-					bottom:2,
-					height:16,
-					textAlign:'left',
-					color:'#444444',
-					font:{fontFamily:'Trebuchet MS',fontSize:14,fontWeight:'bold'}
-				});
-				// Add the username to the view
-				post_view.add(user_label);
+    var user_label = Ti.UI.createLabel({
+        text:user,
+        left:54,
+        width:120,
+        top:-48,
+        bottom:2,
+        height:16,
+        textAlign:'left',
+        color:'#444444',
+        font:{fontFamily:'Trebuchet MS',fontSize:14,fontWeight:'bold'}
+    });
+    // Add the username to the view
+    post_view.add(user_label);
 
-				var date_label = Ti.UI.createLabel({
-					text:created_at,
-					right:0,
-					top:-18,
-					bottom:2,
-					height:14,
-					textAlign:'right',
-					width:110,
-					color:'#444444',
-					font:{fontFamily:'Trebuchet MS',fontSize:12}
-				});
-				// Add the date to the view
-				post_view.add(date_label);
+    var date_label = Ti.UI.createLabel({
+        text:created_at,
+        right:0,
+        top:-18,
+        bottom:2,
+        height:14,
+        textAlign:'right',
+        width:110,
+        color:'#444444',
+        font:{fontFamily:'Trebuchet MS',fontSize:12}
+    });
+    // Add the date to the view
+    post_view.add(date_label);
 
-				var tweet_text = Ti.UI.createLabel({
-					text:tweet,
-					left:54,
-					top:0,
-					bottom:2,
-					height:'auto',
-					width:236,
-					textAlign:'left',
-					font:{fontSize:14}
-				});
-				// Add the tweet to the view
-				post_view.add(tweet_text);
-				// Add the vertical layout view to the row
-				row.add(post_view);
-				row.className = 'item'+c;
-				data[c] = row;    
+    var tweet_text = Ti.UI.createLabel({
+        text:text,
+        left:54,
+        top:0,
+        bottom:2,
+        height:'auto',
+        width:236,
+        textAlign:'left',
+        font:{fontSize:14}
+    });
+    // Add the tweet to the view
+    post_view.add(tweet_text);
+    // Add the vertical layout view to the row
+    row.add(post_view);
+    row.className = 'item'+c;
+    return row;
 }
 function mapTweet(tweet) {
     Ti.API.info(tweet)
@@ -132,21 +131,21 @@ function getTweets(url){
 	var xhr = Ti.Network.createHTTPClient();
 	xhr.timeout = 1000000;
 	xhr.open("GET",url);
-            Ti.API.info("getting tweets")
 
 	xhr.onload = function()
 	{
         
 		try
 		{
-			var tweets = eval('('+this.responseText+')').results;
-        Ti.API.info("got" + tweets.length +" tweets")
+            var tweets = eval('('+this.responseText+')').results;
 			for (var c=0;c<tweets.length;c++){
-                mapTweet(tweets[c])
-                // tableTweet(tweets[c])
+                // mapTweet(tweets[c])
+                data[c] = tableTweet(tweets[c], c)
 			}
 			// Create the tableView and add it to the window.
-            // var tableview = Titanium.UI.createTableView({data:data,minRowHeight:58});
+            var tableview = Titanium.UI.createTableView({data:data,minRowHeight:58});
+            win2.add(tableview);
+            
             // Titanium.UI.currentWindow.add(tableview);
 		}
 		catch(E){
@@ -163,6 +162,7 @@ function strtotime (str, now) {
 	// obtained from http://phpjs.org/functions/strtotime:554
 	var i, match, s, strTmp = '', parse = '';
 	strTmp = str;
+	Ti.API.info("strTmp" + str)
 	strTmp = strTmp.replace(/\s{2,}|^\s|\s$/g, ' '); // unecessary spaces
 	strTmp = strTmp.replace(/[\t\r\n]/g, ''); // unecessary chars
 	if (strTmp == 'now') {
