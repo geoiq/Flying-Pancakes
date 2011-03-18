@@ -5,9 +5,9 @@ Ti.include("utils.js");
 
 if (isIPhone3_2_Plus())
 {
-	//NOTE: starting in 3.2+, you'll need to set the applications
-	//purpose property for using Location services on iPhone
-	Ti.Geolocation.purpose = "Food Cart tracking";
+    //NOTE: starting in 3.2+, you'll need to set the applications
+    //purpose property for using Location services on iPhone
+    Ti.Geolocation.purpose = "Food Cart tracking";
 }
 
 /////
