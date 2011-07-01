@@ -1,9 +1,6 @@
-Welcome to your Appcelerator Titanium Mobile Project
+A very rough sketch mobile application that uses GeoCommons/GeoIQ & Appcelerator.
 
-This is a blank project.  Start by editing your application's app.js to 
-make your first mobile project using Titanium.
-
-
+The goal was to provide an application for mobile food carts to track twitter mentions and send out their route information. Needs some love.
 
 ----------------------------------
 Stuff our legal folk make us say:
